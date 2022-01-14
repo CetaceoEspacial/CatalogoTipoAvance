@@ -47,7 +47,7 @@ namespace catalogotipo.Models
             modelBuilder.Entity<CapaDeModelo>().ToTable("tca_tipodeproducto");          
         }
 
-       // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+      // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 
     }

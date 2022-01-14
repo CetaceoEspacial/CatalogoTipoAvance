@@ -109,11 +109,6 @@
 
 <!----------------------------------------------JS--------------------------------------->
 <!--<script type="text/javascript" src="~/Assets/bootstrap3-dialog-master/src/js/bootstrap-dialog.js"></script>-->
-<script src="https://code.jquery.com/jquery-3.6.0.js"
-		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-		crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$("#tbody_tipos").empty();
 	var trHTML = '';
@@ -123,14 +118,14 @@
 	$.ajax
 		({
 			type: "POST",
-			url: "~/CatalogoTipoController/consultaTipos",
+			url: "/CatalogoTipo/consultaTipos",
 			data: '',
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			async: false,
-			success: function (pantalla)
+			success: function (listatipos)
 			{
-				jsonGral = JSON.parse(pantalla);
+				jsonGral = JSON.parse(listatipos);
 				console.log(jsonGral);
 				$.each(jsonGral, function (i, item)
 						{
@@ -139,14 +134,15 @@
 						'<td>' + item.clave + '</td>' +
 						'<td>' + item.clave_alfanumerica + '</td>' +
 						'<td>' + item.tipo_de_producto + '</td>' +
-						'<td>' + item.descripcion_de_producto + '</td>' +
-						'</tr> ';
-									
+						'<td>' + item.descripcion_de_producto + '</td>'+
+					'<td>' + '<a class="btn btn-warning btnEditarTipo  id="editar_ href="/CatalogoTipoModificar/Index"' + item.clave + '" ' + '">&nbsp;Editar</a>' + '</td>'
+						+ '<td>' + '<a class="btn btn-danger btnBorrarTipo   id="editar_' + item.clave + '" ' + '">&nbsp;Borrar</a>' + '</td>'
+					'</tr> ';								
 			});
 			$('#tbody_tipos').append(trHTML);
 			$("#div_tipos").show();
 			},
-	failure: function (pantalla)
+	failure: function (listatipos)
 		{
 			alert(response.responseText);
 		},

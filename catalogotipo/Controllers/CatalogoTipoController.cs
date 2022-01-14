@@ -43,18 +43,18 @@ namespace catalogotipo.Controllers
 
             adapter.SelectCommand = cmd;
 
-            DataTable pantalla = new DataTable();
-            adapter.Fill(pantalla);
+            DataTable listatipos = new DataTable();
+            adapter.Fill(listatipos);
 
 
-            return Json(DataTableToJson(pantalla));
+            return Json(DataTableToJson(listatipos));
 
         }
         /*Convierte DataTable en Json Ini*/
-        public string DataTableToJson(DataTable pantalla)
+        public string DataTableToJson(DataTable listatipos)
         {
             string JSONString = string.Empty;
-            JSONString = JsonConvert.SerializeObject(pantalla);
+            JSONString = JsonConvert.SerializeObject(listatipos);
             return JSONString;
         }
     }

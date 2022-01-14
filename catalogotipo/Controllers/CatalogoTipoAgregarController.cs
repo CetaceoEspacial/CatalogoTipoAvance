@@ -32,7 +32,9 @@ namespace catalogotipo.Controllers
             {
                 DbProviderFactory dbFactory = DbProviderFactories.GetFactory(db.Database.Connection);
                 string query = null;
-                query = "INSERT INTO tca_productos (clave_alfanumerica,tipo_de_producto,descripcion_de_producto) values '" + clave_alfanumerica + "',"
+                query = "INSERT INTO tca_productos (clave_alfanumerica,tipo_de_producto,descripcion_de_producto) " +
+                    "values '" 
+                     + clave_alfanumerica + "',"
                      + "'" + tipo_de_producto + "',"
                      + "'" + descripcion_de_producto + "',";
                 var cmd = dbFactory.CreateCommand();
