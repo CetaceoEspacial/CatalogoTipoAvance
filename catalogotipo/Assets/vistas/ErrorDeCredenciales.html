@@ -1,0 +1,37 @@
+﻿
+
+   
+        <!--<h2>No se detectó una cuenta de usuario</h2>-->
+        <div class="modal fade" id="modalError">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="background-color:red">
+                        <h2 class="modal-title text-center" id="exampleModalLongTitle" style="color:white">Error de seguridad</h2>
+                    </div>
+                    <div id="modalBodyRecibir" class="modal-body">
+                        <h3 class="modal-title text-center">No se autenticó correctamente</h3>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+
+     function error() {
+        event.preventDefault();
+        sessionStorage.setItem("usuario", "");
+        //ocultaMenu();
+       // alert("carga modal");
+        $("#modalError").modal('show');
+    }
+    error();
+
+</script>

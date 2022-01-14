@@ -1,0 +1,930 @@
+﻿<h2>Bandeja de entrada</h2>
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">Informaci&oacute;n del Área</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+
+                <span style="display:none" id="idUsuario"></span>
+                <span style="display:none" id="idArea"></span>
+                <span style="display:none" id="nivel"></span>
+                <span style="display:none" id="idPadre"></span>
+
+
+                <table class="col-md-12">
+                    <tbody>
+                        <tr>
+
+                            <td style="width:11%"><strong>Nombre: </strong></td>
+                            <td style="width:22%"><span id="lNombre"></span></td>
+                            <td style="width:11%"><strong>Clave UR: </strong></td>
+                            <td style="width:23%"><span id="lClaveUR"></span></td>
+                            <td style="width:11%"><strong>Cargo: </strong></td>
+                            <td style="width:22%"><span id="lCargo"></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clave &Aacute;rea: </strong></td>
+                            <td><span id="lClaveArea"></span></td>
+                            <td><strong>&Aacute;rea: </strong></td>
+                            <td><span id="lArea"></span></td>
+                            <td><strong>Unidad Responsable: </strong></td>
+                            <td><span id="lUnidad"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Filtros de consulta</div>
+            <div class="panel-body">
+
+                <div class="col-md-12">
+                    <!-- <div class="col-md-12" style="padding:30px;">-->
+                    <!-- <div class="col-md-4">-->
+
+                    <div id="selectOrganoSuperior" class="col-md-4">
+
+                        <label for='organoSuperior' class='col-form-label'> Órgano Superior</label>
+                        <select id='organoSuperior' class='form-control' aria-label='Default select example'></select>
+                    </div>
+
+                    <div id="selectUnidadResponsable" class="col-md-4">
+                        <label for='unidadResponsable' class='col-form-label'>Unidad Responsable</label>
+                        <select id='unidadResponsable' class='form-control' aria-label='Default select example'>
+
+                            <option selected value="NA">Seleccione Unidad Responsable</option>"
+
+                        </select>
+
+                    </div>
+
+                    <div class=" col-md-4">
+                        <label for="ejercicioFiscal" class="col-form-label">Ejecicio fiscal</label>
+                        <input type="text" class="form-control" id="ejercicioFiscal" placeholder="Ejecicio fiscal">
+                    </div>
+
+                    <!--<div class="form-group row col-md-4">
+                        <label for="estatus" class="col-form-label">Estatus</label>
+                        <input type="text" class="form-control" id="estatus" placeholder="Estatus">
+
+                    </div>-->
+
+                    <div id="selectEstatus" class=" col-md-4">
+                        <label for='estatus' class='col-form-label'>Estatus</label>
+                        <select id='estatus' class='form-control' aria-label='Default select example'></select>
+
+                    </div>
+
+                    <div class=" col-md-4">
+
+                        <label for="turnadoA" class="col-form-label">Turnado a:</label>
+                        <input type="text" class="form-control" id="turnadoA" placeholder="Turnado a:">
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="numeroDocumento" class="col-form-label">Número de documento</label>
+                        <input type="text" class="form-control" id="numeroDocumento" placeholder="Número de documento">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="palabra" class="col-form-label">Palabra</label>
+                        <input type="text" class="form-control" id="palabra" placeholder="Palabra">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label"> Fecha inicial</label><br />
+                        <input type="date" id="fFechaInicial" name="fFechaInicial" class="form-control datepicker" value="">
+                        <span class="text-danger" id="error-fecha-documento"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label"> Fecha final</label><br />
+                        <input type="date" id="fFechaFinal" name="fFechaFinal" class="form-control datepicker" placeholder="DD-MM-AAAA">
+                        <span class="text-danger" id="error-fecha-recepcion"></span>
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <button id="buttonFiltroBD" type="submit" class="btn btn-primary" style="margin-top: 25px;">Consultar</button>
+
+                    </div>
+                    <!-- </div>-->
+                    <!-- <div class="col-md-4">-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Documentos recibidos</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <!-- <div class="col-md-12" style="margin-top:40px">-->
+                    <div id="tableContainer" style="border:0px solid black">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="col-md-12" style="height:200px">
+        <div id="tableContainer" style="border:0px solid black">
+        </div>
+    </div>-->
+
+
+    <div class="modal" id="ModalRecibir">
+        <div class="modal-dialog" style="width:30%">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div id="modalBodyRecibir" class="modal-body">
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="ModalTurnar">
+        <div class="modal-dialog" style="width:80%">
+            <div class="modal-content">
+
+
+                <!--<div class="modal-header">
+                <h4 class="modal-title">Turnar</h4>
+            </div>
+
+            <div class="modal-body">
+            </div>-->
+
+
+                <div class="container" style="margin-top:20px;">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Datos de turno:</div>
+
+                        <div class="container">
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2" style="">
+                                    <label for="turnoA">Turno A:</label>
+                                </div>
+                                <div id=selectTurnoA class="col-md-6" style="">
+                                    <select name="turnoA" id="turnoA" class="form-control">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-2" style="">
+                                    <label for="cargo">Cargo:</label>
+                                </div>
+                                <div class="col-md-6" style="">
+                                    <input type="text" class="form-control" id="cargoTurnar" placeholder="Cargo">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2" style="">
+                                    <label for="obs">Observaciones:</label>
+                                </div>
+                                <div class="col-md-10" style="">
+                                    <textarea class="form-control" id="observaciones" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Acciones:</div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Urgente" /> Urgente </label>
+                                </div>
+                                <div name="acciones" class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Contestar al remitente" /> Contestar al remitente</label>
+                                </div>
+                                <div name="acciones" class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Conocimiento y Efectos" /> Conocimiento y Efectos procedentes
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Atender" /> Atender </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Asistir en representación" /> Asistir en representación
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Mantener informado por escrito" /> Mantener informado por escrito
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Emitir Opinión" /> Emitir Opinión </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Enviar representante" /> Enviar representante</label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Acordar con el (la) Secretario(a)" /> Acordar con el (la) Secretario(a)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Acciones:</div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Atender Según Instrucción" /> Atender Según Instrucción Verbal
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Acusar de recibido" /> Acusar de recibido
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Acordar con el Dir. Gral." /> Acordar con el Dir. Gral.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Contestar" /> Contestar </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Disculpar" /> Disculpar</label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Enviar copia de resolución al remitente" /> Enviar copia de resolución al remitente
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Mantener informado" /> Mantener informado
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Preparar respuesta" /> Preparar respuesta
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Conocimiento" /> Conocimiento </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Archivar" /> Archivar</label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Estudio y análisis" /> Estudio y análisis
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Atender en audiencia" /> Atender en audiencia
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Elaborar circular " /> Elaborar circular </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Emitir opinión" /> Emitir opinión </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Tramitar / Agendar" /> Tramitar / Agendar
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Por considerarlo de su competencia" /> Por considerarlo de su competencia
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Acordar con la subsecretaria" /> Acordar con la subsecretaria
+                                    </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="acciones" type="checkbox" value="Remitir informe del resultado" /> Remitir informe del resultado
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Archivar" /> Archivar </label>
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label><input name="acciones" type="checkbox" value="Programar reunión" /> Programar reunión </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <!-- <div class="panel-heading">Acciones:</div>-->
+                        <div class="container">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3" style="">
+                                    <label for="fFechaLimite">Fecha Limite de respuesta:</label>
+                                </div>
+                                <div class="col-md-3" style="">
+
+                                    <input type="date" id="fFechaLimite" name="fFechaInicial" class="form-control datepicker" value="">
+
+                                </div>
+                                <div class="col-md-4" style="">
+                                    <label>
+                                        <input name="docOriginal" type="checkbox" value="Se turna documento original" /> Se turna documento original
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div id="btnAnexarTurno" class="col-md-3">
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <!-- <div class="col-md-12" style="margin-top:40px">-->
+                                <div class="container">
+                                    <div id="tableContainerTurnos" style="border:0px solid black;margin:2px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="ModalRechazar">
+        <div class="modal-dialog" style="width:60%">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <!--<div class="modal-header">
+                <h4 class="modal-title">Rechazar</h4>
+                 </div>-->
+                <!-- Modal body -->
+                <div id="modalBodyRechazar" class="modal-body">
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="cerrarModalRechazar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="ModalDocumentos">
+        <div class="modal-dialog" style="width:90%">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Documentos</h4>
+                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="ModalHistorial">
+        <div class="modal-dialog" style="width:80%">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <!--<div class="modal-header">
+    <h4 class="modal-title">Rechazar</h4>
+     </div>-->
+                <!-- Modal body -->
+                <div id="modalBodyHistorial" class="modal-body">
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="cerrarModalRechazar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        
+        $(function () { /* DOM ready */
+            event.preventDefault();
+            $("#organoSuperior").change(function (event) {
+                //event.preventDefault();
+                var y = new Date().getFullYear();
+                llenarSelectUnidad(y);
+            });
+
+        });
+        
+        $(function () {
+            $("#buttonFiltroBD").click(function (event) {
+                event.preventDefault();
+
+                organoSuperior = $("#organoSuperior").val();
+                unidadadResponsable = $("#unidadResponsable").val();
+                eFiscal = $("#ejercicioFiscal").val();
+                estatus = $("#estatus").val();
+                vNumeroDocumento = $("#numeroDocumento").val();
+                palabra = $("#palabra").val();
+                fechaIni = $("#fFechaInicial").val();
+                fechaFin = $("#fFechaFinal").val();
+                organoSupI = $("#lClaveArea").text();
+                unidadRespI = $("#lClaveUR").text();
+                idPadre = $("#idPadre").text();
+
+                idUsuarioTurnado = $("#idUsuario").text();
+
+                GetDocumentos(idUsuarioTurnado,organoSuperior, unidadadResponsable, organoSupI, unidadRespI, idPadre, eFiscal, estatus, "", vNumeroDocumento, palabra, fechaIni, fechaFin);
+            });
+        });
+
+       /* $(function () {
+            $('body').on('focus', ".datepicker", function () {
+                $.fn.datepicker.defaults.language = 'es';
+                $(this).datepicker({
+                    format: "dd/mm/yyyy",
+                    autoclose: true
+                });
+            });
+        });*/
+
+
+        function getCheck() {
+           /// $('[name="acciones"]').click(function () {
+                var arr = $('[name="acciones"]:checked').map(function () {
+                    return this.value;
+                }).get();
+
+                var str = arr.join(', ');
+
+                //$('#arr').text(JSON.stringify(arr));
+                //alert(JSON.stringify(arr));
+                //alert(JSON.stringify(array));
+                //$('#str').text(str);
+
+            return str;
+            //});
+        };
+
+        function getCheckOriginal() {
+            /// $('[name="acciones"]').click(function () {
+            var arr = $('[name="docOriginal"]:checked').map(function () {
+                return this.value;
+            }).get();
+
+            var str = arr.join(',\n');
+
+           // strT=str.replace(/,/g, ", ");
+
+            //$('#arr').text(JSON.stringify(arr));
+            //alert(JSON.stringify(arr));
+            //alert(JSON.stringify(array));
+            //$('#str').text(str);
+
+            return str;
+            //});
+        };
+        
+        function anexarTurno(idDocumento) {
+            event.preventDefault();
+            strArr = getCheck();
+
+            //alert(strArr);
+
+            arr2 = getCheckOriginal();
+
+           // alert(JSON.stringify(arr2));
+
+           // alert($("#turnoA").val());
+          //  alert($("#cargo").val());
+          //  alert($("#observaciones").val());
+          //  alert($("#fFechaLimite").val());
+
+            fechaLim = $("#fFechaLimite").val();
+            //alert(fechaLim);
+
+            if ($("#fFechaLimite").val() != "") {
+                arrFechaLim = fechaLim.split("-");
+                arrFechaLimF = "" + arrFechaLim[0] + arrFechaLim[1] + arrFechaLim[2];
+           
+            //alert(arrFechaLimF);
+
+            vPersonaTurnada = $("select[id='turnoA'] option:selected").text();
+           // vPersonaTurnada = $("#turnoA").text();
+          //  alert(vPersonaTurnada);
+
+            vCargo = $("#cargoTurnar").val();
+
+            vObservaciones =  $("#observaciones").val();
+            fFechaRespuesta = arrFechaLimF;
+            vNumeroEmpleado = $("#idUsuario").text();
+            vNombreEmpleado = $("#lNombre").text();
+            nIdDocumento = idDocumento;
+            nIdPersonaTurnada = $("#turnoA").val();
+            nIdStatus = "1";
+            vAcciones = strArr;
+            
+            guardaTurno(vPersonaTurnada,
+                vCargo,
+                vObservaciones,
+                fFechaRespuesta,
+                vNumeroEmpleado,
+                vNombreEmpleado,
+                nIdDocumento,
+                nIdPersonaTurnada,
+                nIdStatus,
+                vAcciones);
+
+
+                $("#observaciones").val("");
+                $('[name="acciones"]:checked').prop("checked", false);
+                $('[name="docOriginal"]:checked').prop("checked", false);
+                $("#fFechaLimite").val("");
+
+
+                
+
+            } else {
+                alert("La fecha limite es requerida");
+            }
+
+            
+        };
+
+
+        function guardaTurno( vPersonaTurnada,
+            vCargo,
+             vObservaciones,
+            fFechaRespuesta,
+            vNumeroEmpleado,
+             vNombreEmpleado,
+            nIdDocumento,
+           nIdPersonaTurnada,
+            nIdStatus,
+            vAcciones) {
+
+            var datos = {
+                VPersonaTurnada: vPersonaTurnada,
+                VCargo: vCargo,
+                VObservaciones: vObservaciones,
+                FFechaRespuesta: fFechaRespuesta,
+                VNumeroEmpleado: vNumeroEmpleado,
+                VNombreEmpleado: vNombreEmpleado,
+                NIdDocumento: nIdDocumento,
+                NIdPersonaTurnada: nIdPersonaTurnada,
+                NIdStatus: nIdStatus,
+                VAcciones: vAcciones,
+            };
+              
+            $.ajax({
+                url: "/BandejaDeEntrada/GuardaTurnado",
+                data: JSON.stringify(datos),
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //alert(data);
+                    console.log(data);
+                    alert(data.mensaje);
+                    llenaAnexarTurno(nIdDocumento);
+                   // turnar(nIdDocumento);
+
+                    organoSuperior = $("#organoSuperior").val();
+                    unidadadResponsable = $("#unidadResponsable").val();
+                    eFiscal = $("#ejercicioFiscal").val();
+                    estatus = $("#estatus").val();
+                    vNumeroDocumento = $("#numeroDocumento").val();
+                    palabra = $("#palabra").val();
+                    fechaIni = $("#fFechaInicial").val();
+                    fechaFin = $("#fFechaFinal").val();
+                    organoSupI = $("#lClaveArea").text();
+                    unidadRespI = $("#lClaveUR").text();
+                    idPadre = $("#idPadre").text();
+                    idUsuarioTurnado = $("#idUsuario").text();
+
+                    GetDocumentos(idUsuarioTurnado,organoSuperior, unidadadResponsable, organoSupI, unidadRespI,idPadre, eFiscal, estatus, "", vNumeroDocumento, palabra, fechaIni, fechaFin);
+
+                   
+                },
+                error: function (response) {
+                    alert("error");
+                },
+                failure: function (response) {
+                    alert("arriva failure");
+                }
+            });
+        }
+
+
+        function llenaAnexarTurno(idDocumento)  {
+                
+            $("#btnAnexarTurno").html("<button id='agregarTurno'  onclick='anexarTurno(" + idDocumento + ");' "+
+                " type = 'button' class= 'btn btn-light' > Anexar Turno</button > ");
+
+            nivel = parseInt($("#nivel").text(),10);
+
+            piIDUsuario = parseInt($("#idArea").text(), 10);
+            //alert(piIDUsuario);
+            idUsuario = $("#idUsuario").text();
+            //alert(idUsuario);
+            llenarSelectTurnar(piIDUsuario, idUsuario);
+            
+            idUsuario = $("#idUsuario").text();
+            GetTurnos(idDocumento, idUsuario);
+
+            $("#observaciones").val("");
+            $('[name="acciones"]:checked').prop("checked", false);
+            $('[name="docOriginal"]:checked').prop("checked", false);
+            $("#fFechaLimite").val("");
+
+
+
+            
+        };
+
+        
+        function GetTurnos(idDocumento, idUsuario) {
+            
+            var datos = {
+                IdUsuario: idUsuario,
+                IdDocumento: idDocumento
+            };
+
+            $.ajax({
+                url: "/BandejaDeEntrada/LlenaTablaTurnos",
+                data: JSON.stringify(datos),
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //alert(data);
+                    console.log(data);
+                    // style='table-layout: fixed;word-wrap: break-word;'
+                    tabla = "<table class='table table-bordered' "+
+                    //style = 'table-layout: fixed;word-wrap: break-word' > " +
+                        "<thead class='thead-dark'>" +
+                        "<tr>" +
+                        "   <th style='font-size:12px;width: 15%;'>Fecha limite</th>" +
+                        "   <th style='font-size:12px;width: 20%;'>Turnado a:</th>" +
+                        "   <th style='font-size:12px;width: 20%;'>Cargo</th>" +
+                        "   <th style='font-size:12px;width: 20%;'>Observaciones</th>" +
+                        "   <th style='font-size:12px;width: 25%;'>Acciones</th>" +
+                        " </tr>" +
+                        "  </thead >" +
+                        " <tbody>";
+
+                    for (x of data) {
+                        // console.log(x.Cve_Unidad_Presupuestal + ' ' + x.Txt_Unidad_Presupuestal);
+                        
+                        tabla += "<tr>" +
+                            "<td style='font-size:12px'>" + x.fFechaRespuesta + "</td>" +
+                            "<td style='font-size:12px'>" + x.vPersonaTurnada + "</td>" +
+                            "<td style='font-size:12px'>" + x.Cargo + "</td>" +
+                            "<td style='font-size:12px'>" + x.vObservaciones + "</td>" +
+                            "<td style='font-size:12px'>" + x.vAcciones + "</td>" +
+                            "</tr>";
+                    }
+                
+                    tabla += " </tbody></table >";
+
+                    $("#tableContainerTurnos").html(tabla);
+                },
+                error: function (response) {
+                    alert("error");
+                },
+                failure: function (response) {
+                    alert("arriva failure");
+                }
+            });
+        }
+
+
+
+        function llenarSelectTurnar(piIDUsuario,idUsuario) {
+            datos = {
+                Id: piIDUsuario,
+                IdUsuario: idUsuario
+            };
+
+            $.ajax({
+                url: "/BandejaDeEntrada/ConsultaTurnos",
+                data: JSON.stringify(datos),
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //  alert("success");
+                    console.log(data);
+
+                    selectTurnar = "";
+
+                   // selectTurnar = "<label for='status' class= 'col-form-label'>Estatus</label >" +
+                    selectTurnar += "<select id ='turnoA' class='form-control' aria-label='Default select example'>";
+                    //   a = 0;
+                   // selectTurnar += "<option selected value=" + "48045" + ">" + "Marco Antonio Vaca Montillo" + "</option>";
+                    //selectTurnar += "<option selected value=" + "NA" + ">" + "Seleccione persona" + "</option>";
+                    i = 0;
+                    for (x of data) {
+                        console.log(x.ID_USUARIO + ' ' + x.NombreCompleto);
+                        if (i == 0) {
+                            selectTurnar += "<option selected value=" + x.ID_USUARIO + ">" + x.NombreCompleto + "</option>";
+                            i = 1;
+                        } else {
+                            selectTurnar += "<option value=" + x.ID_USUARIO + ">" + x.NombreCompleto + "</option>";
+                        }
+
+                    }
+
+                    //      selectUnidad += "<option value=" +  + ">" + + " " +    + "</option>";
+                    selectTurnar += "</select>";
+
+
+                    // $(#selectUnidadResponsable).html();
+
+                    $("#selectTurnoA").html(selectTurnar);
+                    idTurno= $("#turnoA").val()
+                   // alert(idTurno);
+
+                    if (idTurno != "" && idTurno != null) {
+                        llenarCargo(idTurno);
+                    }
+                    //else {
+                   // alert("No entra porque es nulo")}
+
+                    
+
+                    //alert("48045");
+                   /* if ("48045") {
+                        llenarCargo("48045");
+                    }*/
+
+                },
+                error: function (response) {
+                    alert("error");
+                },
+                failure: function (response) {
+                    alert("arriva failure");
+                }
+            });
+
+        }
+
+
+        function llenarCargo(id) {
+
+            $("#cargoTurnar").val("");
+
+            $.ajax({
+                url: "/BandejaDeEntrada/LlenarCargoTurno/"+id,
+                data: "{}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //  alert("success");
+                    console.log(data);
+
+
+                    $("#cargoTurnar").val(data["0"].Cargo);
+
+                    
+                },
+                error: function (response) {
+                    alert("error");
+                },
+                failure: function (response) {
+                    alert("arriva failure");
+                }
+            });
+
+        }
+        
+        //$("#selectTurnoA").change(
+        //        llenarCargo($("#selectTurnoA").val()));
+        
+
+
+        $(function () { /* DOM ready */
+            event.preventDefault();
+            $("#selectTurnoA").change(function (event) {
+                //event.preventDefault();
+                //var y = new Date().getFullYear();
+
+                idCargo = $("#turnoA").val();
+            //    alert(idCargo);
+                if (idCargo) {
+                    llenarCargo(idCargo);
+                }
+            });
+            
+        });
+
+      /*  function turnar(id) {
+            event.preventDefault();
+            $.ajax({
+                url: "/BandejaDeEntrada/Turnar/" + id,
+                data: "",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                 
+                    console.log(data);
+                    // alert(data.mensaje);
+                },
+                error: function (response) {
+                    alert("error");
+                },
+                failure: function (response) {
+                    alert("arriva failure");
+                }
+            });
+
+        }*/
+       
+    </script>

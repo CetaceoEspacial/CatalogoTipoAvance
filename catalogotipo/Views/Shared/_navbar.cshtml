@@ -1,0 +1,44 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+
+				<li>@Html.ActionLink(" Configuración", "Index", "")</li>
+
+
+
+				<li class="dropdown">
+					<a id="dLabel" role="button" data-toggle="dropdown">
+						Venta de Boletos <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>@Html.ActionLink(" Proceso de Registro", "index", "")</li>
+						<li>@Html.ActionLink(" Item 2", "index", "")</li>
+						<li>@Html.ActionLink(" Item 3", "Index", "")</li>
+
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a id="dLabel" role="button" data-toggle="dropdown">
+						Cat&aacute;logos <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>@Html.ActionLink("Marca", "index", "Marca")</li>
+						<li>@Html.ActionLink("Bus", "index", "Bus")</li>
+
+					</ul>
+				</li>
+
+			</ul>
+
+		</div>
+	</div>
+</div>

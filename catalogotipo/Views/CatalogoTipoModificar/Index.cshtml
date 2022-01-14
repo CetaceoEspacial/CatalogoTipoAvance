@@ -1,0 +1,48 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+	<div class="panel panel-default">
+		<div class="panel-heading">Nombre del encargado</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+
+				<span style="display:none" id="idUsuario"></span>
+				<p>
+					Clave:
+					<input readonly name="Clave" size="40">
+				</p>
+				<p>
+					Clave alfanumérica:
+					<input type="text" name="ClaveAlfanumerica" size="40" placeholder="Editar clave alfanumérica">
+				</p>
+
+				<p>
+					Tipo de producto:
+					<input type="text" name="TipoDeProducto" size="40" placeholder="Editar tipo de producto">
+				</p>
+				<p>
+
+					Descripción de producto:<textarea name="texto" rows="4" cols="40" placeholder="Editar Descripción de producto"></textarea>
+				</p>
+				<p>
+					<a class="btn btn-primary btn-sm " href="/CatalogoTipo/Index">
+						<i class="fa fa-chevron-circle-right"></i> Enviar
+					</a>
+					<a class="btn btn-primary btn-sm " href="/CatalogoTipo/Index">
+						<i class="fa fa-chevron-circle-right"></i> Cancelar
+					</a>
+
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<!----------------------------------------------JS--------------------------------------->
+<script type="text/javascript" src="~/Assets/js/fontawesome-all.min.js"></script>
+<script type="text/javascript" src="~/Assets/bootstrap3-dialog-master/src/js/bootstrap-dialog.js"></script>
+<script type="text/javascript">
+</script>

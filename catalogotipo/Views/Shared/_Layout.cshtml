@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Catalogo de tipo de producto </title>
+	<!-- <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />-->
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="~/Scripts/modernizr-2.6.2.js"></script>
+	<script src="~/Assets/js/jquery-3.1.0.js"></script>
+	<script src="~/Assets/js/jquery.mask.min.js"></script>
+	<script src="~/Assets/js/jquery.base64.min.js"></script>
+	<link href="~/Assets/css/styMenu.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="padding: 0;">
+
+	<div class="container-fluid">
+		<!-- <p>&copy; @DateTime.Now.Year - Hopewell System</p>-->
+		<img src="~/Assets/img/header.png" style="width:100%">
+
+		<div class="menu_class" style="background-color:gray">
+			<ul>
+			</ul>
+		</div>
+
+		<div style="padding: 30px;min-height: 300px;">
+			@RenderBody()
+		</div>
+
+	</div>
+	<footer>
+		<div class="container-fluid">
+			<img src="~/Assets/img/footer.png" style="width:100%">
+			<p>&copy; @DateTime.Now.Year - Hopewell System</p>
+		</div>
+	</footer>
+</body>
+</html>

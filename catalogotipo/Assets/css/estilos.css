@@ -1,0 +1,63 @@
+/****** BootStrap ***********/
+.bg-primary {
+  background-color: #092432 !important; }
+
+.text-primary {
+  color: #092432 !important; }
+
+.btn-primary {
+  background-color: #092432 !important;
+  border-color: #092432 !important; }
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #084866 !important; }
+
+.btn-primary:active {
+  background-color: #084866 !important; }
+
+.btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(9, 36, 50, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(9, 36, 50, 0.5) !important; }
+
+.bg-secondary {
+  background-color: #084866 !important; }
+
+/****** Fuentes ***********/
+@font-face {
+  font-family: graphic-light;
+  src: url(Graphik-Light.otf); }
+
+@font-face {
+  font-family: "Graphik-Black";
+  src: url(Graphik-Light.otf); }
+
+@font-face {
+  font-family: "Graphik-Bold";
+  src: url(Graphik-Light.otf); }
+
+/****** Estilos ***********/
+html {
+  font-size: 14px; }
+
+body {
+  font-family: graphic-light !important;
+  color: #545454; }
+
+hr.hr-title:before {
+  content: " ";
+  width: 35px;
+  height: 5px;
+  background-color: #092432;
+  display: block;
+  position: absolute; }
+
+.card li:hover {
+  background-color: #FAFAFA; }
+
+/****** Media Querys ***********/
+@media (min-width: 768px) {
+  html {
+    font-size: 18px; } }
+
+/*# sourceMappingURL=estilos.css.map */

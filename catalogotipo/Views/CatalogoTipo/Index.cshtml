@@ -1,0 +1,156 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Catalogo de tipo de producto</h2>
+
+<div class="row">
+	<div class="panel panel-default">
+		<div class="panel-heading"><h3>Nombre del encargado</h3></div>
+		<div class="panel-body">
+			<div class="col-md-12">
+
+				<span style="display:none" id="idUsuario"></span>
+
+				<table class="col-md-12">
+					<tbody>
+						<tr>
+							<td style="width:11%"><strong>Nombre: </strong></td>
+							<td style="width:22%"><span id="lNombre"></span></td>
+							<td style="width:11%"><strong>Clave UR: </strong></td>
+							<td style="width:23%"><span id="lClaveUR"></span></td>
+							<td style="width:11%"><strong>Clave UP: </strong></td>
+							<td style="width:22%"><span id="lClaveUP"></span></td>
+						</tr>
+						<tr>
+							<td><strong>Cargo: </strong></td>
+							<td><span id="lCargo"></span></td>
+							<td><strong>Unidad Responsable: </strong></td>
+							<td><span id="lUnidad"></span></td>
+							<td><strong>Unidad Presupuestal: </strong></td>
+							<td><span id="lUnidadP"></span></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="botones" class="center-block">
+	<div class="text-capitalize center-block">
+		<div class="row">
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="buscaclavealfanumerica" name="buscaclavealfanumerica" />
+				<span class="text-danger" id="error-clave"></span>
+				<p class="btn btn-primary btn-sm " href="">
+					<i class="fa fa-chevron-circle-right"></i> Buscar clave alfanumerica de producto
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="buscatipo" name="buscatipo" />
+				<span class="text-danger" id="error-clave"></span>
+				<p class="btn btn-primary btn-sm " href="">
+					<i class="fa fa-chevron-circle-right"></i> Buscar tipo de producto
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<textarea name="texto" class="form-control" rows="2" cols="80" id="buscardescripciondeproducto"></textarea>
+				<p class="btn btn-primary btn-sm " href="">
+					<i class="fa fa-chevron-circle-right"></i> Buscar descripción de producto
+				</p>
+			</div>
+		</div>
+
+		<a class="btn btn-primary btn-success " href="/CatalogoTipoAgregar/Index">
+			<i class="fa fa-chevron-circle-right"></i> Agregar tipo de producto
+		</a>
+	</div>
+</div>
+
+<div class="row" id="div_tablas">
+	<div class="panel panel-default">
+		<div class="panel-heading"></div>
+		<div class="row">
+			<div class="col-lg-12">
+				<table class="table" id="tablatipos">
+					<thead id="th_bus">
+						<tr>
+							<th>
+								<label class="control-label"> Clave </label><br />
+							</th>
+							<th>
+								<label class="control-label"> Clave Alfanumérica</label><br />
+							</th>
+							<th>
+								<label class="control-label"> Tipo de producto</label><br />
+							</th>
+							<th>
+								<label class="control-label"> Descripción de producto</label><br />
+							</th>
+						</tr>
+					</thead>
+
+					<tbody id="tbody_tipos"></tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!----------------------------------------------JS--------------------------------------->
+<!--<script type="text/javascript" src="~/Assets/bootstrap3-dialog-master/src/js/bootstrap-dialog.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$("#tbody_tipos").empty();
+	var trHTML = '';
+	var nIdBus = '';
+	$("#div_tipos").hide();
+	jsonGral = [];
+	$.ajax
+		({
+			type: "POST",
+			url: "~/CatalogoTipoController/consultaTipos",
+			data: '',
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			async: false,
+			success: function (pantalla)
+			{
+				jsonGral = JSON.parse(pantalla);
+				console.log(jsonGral);
+				$.each(jsonGral, function (i, item)
+						{
+					trHTML +=
+						'<tr>' +
+						'<td>' + item.clave + '</td>' +
+						'<td>' + item.clave_alfanumerica + '</td>' +
+						'<td>' + item.tipo_de_producto + '</td>' +
+						'<td>' + item.descripcion_de_producto + '</td>' +
+						'</tr> ';
+									
+			});
+			$('#tbody_tipos').append(trHTML);
+			$("#div_tipos").show();
+			},
+	failure: function (pantalla)
+		{
+			alert(response.responseText);
+		},
+	});
+
+
+</script>
