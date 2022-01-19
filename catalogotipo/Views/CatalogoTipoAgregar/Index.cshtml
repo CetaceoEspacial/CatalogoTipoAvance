@@ -2,36 +2,38 @@
 @{
 	ViewBag.Title = "Index";
 }
-<div class="row">
-	<div class="panel panel-default">
-		<div class="panel-heading"><h2>Agregar Tipo de producto</h2></div>
-		<div class="panel-body">
-			<div class="col-md-12">
+<form action="" method="post" class="form_tipos" id="tipos">
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Agregar Tipo de producto</h2></div>
+			<div class="panel-body">
+				<div class="col-md-12">
 
-				<span style="display:none" id="idUsuario"></span>
+					<span style="display:none" id="idUsuario"></span>
 
-				<table class="col-md-12">
-					<tbody>
-						<tr>
-							<td style="width:11%"><strong>Nombre: </strong></td>
-							<td style="width:22%"><span id="lNombre"></span></td>
-							<td style="width:11%"><strong>Clave UR: </strong></td>
-							<td style="width:23%"><span id="lClaveUR"></span></td>
-							<td style="width:11%"><strong>Clave UP: </strong></td>
-							<td style="width:22%"><span id="lClaveUP"></span></td>
-						</tr>
-						<tr>
-							<td><strong>Cargo: </strong></td>
-							<td><span id="lCargo"></span></td>
-							<td><strong>Unidad Responsable: </strong></td>
-							<td><span id="lUnidad"></span></td>
-							<td><strong>Unidad Presupuestal: </strong></td>
-							<td><span id="lUnidadP"></span></td>
-						</tr>
-					</tbody>
-				</table>
-				<span style="display:none" id="idUsuario"></span>
-				<p>
+					<table class="col-md-12">
+						<tbody>
+							<tr>
+								<td style="width:11%"><strong>Nombre: </strong></td>
+								<td style="width:22%"><span id="lNombre"></span></td>
+								<td style="width:11%"><strong>Clave UR: </strong></td>
+								<td style="width:23%"><span id="lClaveUR"></span></td>
+								<td style="width:11%"><strong>Clave UP: </strong></td>
+								<td style="width:22%"><span id="lClaveUP"></span></td>
+							</tr>
+							<tr>
+								<td><strong>Cargo: </strong></td>
+								<td><span id="lCargo"></span></td>
+								<td><strong>Unidad Responsable: </strong></td>
+								<td><span id="lUnidad"></span></td>
+								<td><strong>Unidad Presupuestal: </strong></td>
+								<td><span id="lUnidadP"></span></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<span style="display:none" id="idUsuario"></span>
+
 					<div class="row">
 						<div class="col-md-3">
 							<label class="control-label">Clave:</label><br />
@@ -39,48 +41,73 @@
 							<span class="text-danger" id="error-clave"></span>
 						</div>
 					</div>
-				</p>
-				<p>					
-					<div class="row">
-						<div class="col-md-5">
-							<label class="control-label">Clave alfanumérica:</label><br />
-							<input type="text" class="form-control" id="clavealfanumerica" name="clavealfanumerica" placeholder="Agregar clave alfanumérica" />
-							<span class="text-danger" id="error-clave"></span>
+
+					<p>
+						<div class="row">
+							<div class="col-md-5">
+								<label class="control-label">Clave alfanumérica:</label><br />
+								<input type="text" class="form-control" id="clavealfanumerica" name="clavealfanumerica" placeholder="Agregar clave alfanumérica" />
+								<span class="text-danger" id="error-clave"></span>
+							</div>
 						</div>
-					</div>
-				</p>
-				<p>
-					<div class="row">
-						<div class="col-md-5">
-							<label class="control-label">Tipo de producto:</label><br />
-							<input type="text" class="form-control" id="tipodeproducto" name="tipodeproducto" placeholder="Agregar tipo de producto" />
-							<span class="text-danger" id="error-tipo"></span>
+					</p>
+
+					<p>
+						<div class="row">
+							<div class="col-md-5">
+								<label class="control-label">Tipo de producto:</label><br />
+								<input type="text" class="form-control" id="tipodeproducto" name="tipodeproducto" placeholder="Agregar tipo de producto" />
+								<span class="text-danger" id="error-tipo"></span>
+							</div>
 						</div>
-					</div>
-				</p>
-				<p>
-					<div class="row">
-						<div class="col-md-5">
-							<label class="control-label">Descripción de producto:</label><br />
-							<textarea name="texto" class="form-control" rows="4" cols="90" id="descripciondeproducto" placeholder="Agregar tipo de producto"></textarea>							 
-							<span class="text-danger" id="error-descripcion"></span>
+					</p>
+					<p>
+						<div class="row">
+							<div class="col-md-5">
+								<label class="control-label">Descripción de producto:</label><br />
+								<textarea name="descripciondeproducto" class="form-control" rows="4" cols="90" id="descripciondeproducto" placeholder="Agregar descripción de producto"></textarea>
+								<span class="text-danger" id="error-descripcion"></span>
+							</div>
 						</div>
-					</div>			
-				</p>
-				<p>
-					<a class="btn btn-primary btn-success " href="/CatalogoTipo/Index">
-						<i class="fa fa-chevron-circle-right"></i> Agregar
-					</a>
-					<a class="btn btn-primary btn-danger " href="/CatalogoTipo/Index">
-						<i class="fa fa-chevron-circle-right"></i> Cancelar
-					</a>
-				</p>				
-			</div>
+					</p>
+
+					<p>
+						<button type="button" class="btn btn-primary btn-success" id="btnSave"><i class="far fa-save"></i> Agregar</button>
+
+						<a class="btn btn-primary btn-danger " href="/CatalogoTipo/Index">
+							<i class="fa fa-chevron-circle-right"></i> Cancelar
+						</a>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
+</form>
+
 <!----------------------------------------------JS--------------------------------------->
-<script type="text/javascript" src="~/Assets/js/fontawesome-all.min.js"></script>
-<script type="text/javascript" src="~/Assets/bootstrap3-dialog-master/src/js/bootstrap-dialog.js"></script>
 <script type="text/javascript">
+	$("#btnSave").click(function () {
+		$.ajax(
+			{
+				type: "POST",
+				contentType: "application/json",
+				url: "/CatalogoTipoAgregar/AgregarTipo",
+				data: JSON.stringify			
+				({								
+						clavealfanumerica: document.getElementById('clavealfanumerica').value,
+						tipodeproducto: document.getElementById('tipodeproducto').value,
+						descripciondeproducto: document.getElementById('descripciondeproducto').value,
+				}),
+				dataType: "json",
+				success: function (AgregarTipo)
+				{
+					console.log(AgregarTipo);
+
+					},
+				failure: function (xhr, ajaxOptions, thrownError) {
+					console.log(xhr);
+				}
+			});
+	});
+
 </script>

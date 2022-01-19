@@ -26,35 +26,55 @@ namespace catalogotipo.Controllers
             return View();
         }
 
-        public ActionResult AgregarTipo(SqlConnection con, string clave_alfanumerica, string tipo_de_producto, string descripcion_de_producto)
+        public JsonResult AgregarTipo(string clavealfanumerica, string tipodeproducto, string descripciondeproducto)
         {
             try
             {
-                DbProviderFactory dbFactory = DbProviderFactories.GetFactory(db.Database.Connection);
-                string query = null;
-                query = "INSERT INTO tca_productos (clave_alfanumerica,tipo_de_producto,descripcion_de_producto) " +
-                    "values '" 
-                     + clave_alfanumerica + "',"
-                     + "'" + tipo_de_producto + "',"
-                     + "'" + descripcion_de_producto + "',";
-                var cmd = dbFactory.CreateCommand();
-                cmd.Connection = db.Database.Connection;
+                SqlConnection con = new SqlConnection(db.Database.Connection.ConnectionString);       
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "INSERT INTO tca_tipodeproducto(clave_alfanumerica,tipo_de_producto,descripcion_de_producto) VALUES (@clavealfanumerica,@tipodeproducto,@descripciondeproducto) ";   
+                cmd.Parameters.Add("@clavealfanumerica", SqlDbType.VarChar).Value = clavealfanumerica;
+                cmd.Parameters.Add("@tipodeproducto", SqlDbType.VarChar).Value = tipodeproducto;
+                cmd.Parameters.Add("@descripciondeproducto", SqlDbType.VarChar).Value = descripciondeproducto;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = query;
-
-
-                return Json("success", JsonRequestBehavior.AllowGet);
-
-
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                {
+                    return Json("success", JsonRequestBehavior.AllowGet);
+                   
+                }
+            }
+            catch (Exception e)
+            {
+                    return Json("failure", JsonRequestBehavior.AllowGet);
             }
 
 
+        }
+        public JsonResult BorrarTipo(string clavealfanumerica, string tipodeproducto, string descripciondeproducto)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(db.Database.Connection.ConnectionString);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "DELETE tca_tipodeproducto(clave_alfanumerica,tipo_de_producto,descripcion_de_producto) WHERE clave_alfanumerica = @clavealfanumerica;";
+                cmd.Parameters.Add("@clavealfanumerica", SqlDbType.VarChar).Value = clavealfanumerica;
+                cmd.Parameters.Add("@tipodeproducto", SqlDbType.VarChar).Value = tipodeproducto;
+                cmd.Parameters.Add("@descripciondeproducto", SqlDbType.VarChar).Value = descripciondeproducto;
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                {
+                    return Json("success", JsonRequestBehavior.AllowGet);
+                }
+            }
             catch (Exception e)
             {
                 return Json("failure", JsonRequestBehavior.AllowGet);
-
-
             }
+
 
         }
     }

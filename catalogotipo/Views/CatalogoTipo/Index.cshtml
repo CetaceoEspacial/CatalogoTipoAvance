@@ -108,7 +108,6 @@
 </div>
 
 <!----------------------------------------------JS--------------------------------------->
-<!--<script type="text/javascript" src="~/Assets/bootstrap3-dialog-master/src/js/bootstrap-dialog.js"></script>-->
 <script type="text/javascript">
 	$("#tbody_tipos").empty();
 	var trHTML = '';
@@ -135,17 +134,39 @@
 						'<td>' + item.clave_alfanumerica + '</td>' +
 						'<td>' + item.tipo_de_producto + '</td>' +
 						'<td>' + item.descripcion_de_producto + '</td>'+
-					'<td>' + '<a class="btn btn-warning btnEditarTipo  id="editar_ href="/CatalogoTipoModificar/Index"' + item.clave + '" ' + '">&nbsp;Editar</a>' + '</td>'
-						+ '<td>' + '<a class="btn btn-danger btnBorrarTipo   id="editar_' + item.clave + '" ' + '">&nbsp;Borrar</a>' + '</td>'
+					'<td>' + '<a class="btn btn-warning btnEditarTipo  id="editar_ href="/CatalogoTipoModificar/Index"' + item.clave_alfanumerica + '" ' + '">&nbsp;Editar</a>' + '</td>'
+						+ '<td>' + '<a class="btn btn-danger btnBorrarTipo   id="borrar"' + item.clave_alfanumerica + '" ' + '">&nbsp;Borrar</a>' + '</td>'
 					'</tr> ';								
 			});
 			$('#tbody_tipos').append(trHTML);
-			$("#div_tipos").show();
+			$("#div_tablas").show();
 			},
 	failure: function (listatipos)
 		{
 			alert(response.responseText);
 		},
+		});
+
+	$("#borrar").click(function () {
+		$.ajax(
+			{
+				type: "POST",
+				contentType: "application/json",
+				url: "/CatalogoTipoAgregar/BorrarTipo",
+				data: JSON.stringify
+					({
+						clavealfanumerica: document.getElementById('clavealfanumerica').value,
+						tipodeproducto: document.getElementById('tipodeproducto').value,
+						descripciondeproducto: document.getElementById('descripciondeproducto').value,
+					}),
+				dataType: "json",
+				success: function (BorrarTipo) {
+					console.log(BorrarTipo);
+				},
+				failure: function (xhr, ajaxOptions, thrownError) {
+					console.log(xhr);
+				}
+			});
 	});
 
 

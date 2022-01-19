@@ -44,7 +44,8 @@ namespace catalogotipo.Models
         public virtual DbSet<CapaDeModelo> CapaDeModelo { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CapaDeModelo>().ToTable("tca_tipodeproducto");          
+            modelBuilder.Entity<CapaDeModelo>().ToTable("tca_tipodeproducto");
+            modelBuilder.Entity<CapaDeModelo>().ToTable("tca_producto");
         }
 
       // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
